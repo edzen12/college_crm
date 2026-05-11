@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('api/accounts/', include('apps.accounts.urls')), 
+    path('api/academics/', include('apps.academics.urls')), 
     path('api/students/', include('apps.students.urls')), 
 
     path('api/token/', TokenObtainPairView.as_view()),
