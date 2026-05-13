@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'apps.academics',
     'apps.accounts',
     'apps.students',
+
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -97,9 +99,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -118,5 +120,24 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication', 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
+    'DEFAULT_FILTER_BACKENDS':[
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ],
+    'DEFAULT_PAGINATION_CLASS':(
+        'rest_framework.pagination.PageNumberPagination'
+    ),
+    'PAGE_SIZE':20,
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'College CRM API',
+    'DESCRIPTION': 'Учебный проект для группы Backend №8',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
